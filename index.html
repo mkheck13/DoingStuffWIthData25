@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/output.css">
+    <title>Doing Stuff With Data</title>
+</head>
+<body class="bg-green-400">
+    <!-- Title -->
+    <h1 class="text-5xl text-center my-10">Doing Stuff With Data</h1>
+
+    <!-- Headers and Columns  -->
+    <div class="columns-5 flex justify-evenly border rounded-2xl">
+        <!-- ID Div -->
+        <div>
+            <div class="border-b flex my-5 pb-5">
+                <div class="mr-2">
+                    <h1>ID</h1>
+                </div>
+                <div class="">
+                    <button id="idBtn" class="bg-amber-400 cursor-pointer">Change</button>
+                </div>
+            </div>
+            <div id="idDiv">Id data</div>
+        </div>
+
+        <!-- First Name Div -->
+        <div>
+            <div class="border-b flex my-5 pb-5">
+                <div>
+                    <h1 class="mr-2">First Name</h1>
+                </div>
+                <div>
+                    <button id="firstNameBtn" class="bg-amber-400 cursor-pointer">Change</button>
+                </div>
+            </div>
+            <div id="firstNameDiv">First Name data</div>
+        </div>
+
+        <!-- Last Name Div -->
+        <div>
+            <div class="border-b flex my-5 pb-5">
+                <div>
+                    <h1 class="mr-2">Last Name</h1>
+                </div>
+                <div>
+                    <button id="lastNameBtn" class="bg-amber-400 cursor-pointer">Change</button>
+                </div>
+            </div>
+            <div id="lastNameDiv">Last Name data</div>
+        </div>
+
+        <!-- Height Div -->
+        <div>
+            <div class="border-b flex my-5 pb-5">
+                <div>
+                    <h1 class="mr-2">Height</h1>
+                </div>
+                <div>
+                    <button id="heightBtn" class="bg-amber-400 cursor-pointer">Change</button>
+                </div>
+            </div>
+            <div id="heightDiv">Height data</div>
+        </div>
+
+        <!-- Age Div -->
+        <div>
+            <div class="border-b flex my-5 pb-5">
+                <div>
+                    <h1 class="mr-2">Age</h1>
+                </div>
+                <div>
+                    <button id="ageBtn" class="bg-amber-400 cursor-pointer">Change</button>
+                </div>
+            </div>
+            <div id="ageDiv">Age data</div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+     <div class="mt-5 text-center">
+        <nav aria-label="Page navigation example">
+            <ul class="inline-flex -space-x-px text-sm">
+              <li>
+                <a id="previousBtn" href="#" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+              </li>
+              <li>
+                <a id="show10Btn" href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">10</a>
+              </li>
+              <li>
+                <a id="show20Btn" href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">20</a>
+              </li>
+              <li>
+                <a id="show30Btn" href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">30</a>
+              </li>
+              <li>
+                <a id="show40Btn" href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">40</a>
+              </li>
+              <li>
+                <a id="show50Btn" href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">50</a>
+              </li>
+              <li>
+                <a id="nextBtn" href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+              </li>
+            </ul>
+          </nav>
+     </div>
+    
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script type="module" src="./scripts/app.js"></script>
+</body>
+</html>
