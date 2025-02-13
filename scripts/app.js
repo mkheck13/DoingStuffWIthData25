@@ -29,7 +29,6 @@ let limitShown = 10;
 let ascendingOrder = true;
 let userData;
 let startIndex = 0;
-let showLimit = 10;
 let peopleList;
 
 let divArray = [idDiv, firstNameDiv, lastNameDiv, heightDiv, ageDiv]
@@ -83,7 +82,7 @@ async function populate(sortBy) {
         field.textContent = "";
     });
 
-    peopleList.slice(startIndex, startIndex + showLimit).map(person => {
+    peopleList.slice(startIndex, startIndex + limitShown).map(person => {
         createDiv(person);
     });
 };
@@ -112,7 +111,7 @@ window.addEventListener('load', function () {
 });
 
 
-// On Clicks
+// OnClicks For Sort Buttons
 idBtn.addEventListener('click', () => {
 
     if(sortBy === 'idBtn' && ascendingOrder === true){
@@ -126,4 +125,47 @@ idBtn.addEventListener('click', () => {
         sortBy = 'idBtn';
         populate(sortBy);
     }
+});
+
+
+
+// Pagination OnClicks & Limit change Function
+function showLimitClick(limit){
+    limitShown = limit;
+    populate(sortBy);
+}
+
+show10Btn.addEventListener('click', () => {
+    showLimitClick(10)
+});
+show20Btn.addEventListener('click', () => {
+    showLimitClick(20)
+});
+show30Btn.addEventListener('click', () => {
+    showLimitClick(30)
+});
+show40Btn.addEventListener('click', () => {
+    showLimitClick(40)
+});
+show50Btn.addEventListener('click', () => {
+    showLimitClick(50)
+});
+
+// Next & Previous OnClicks
+previousBtn.addEventListener('click', () => {
+    startIndex -= limitShown;
+    
+    if(startIndex < 0){
+        startIndex = peopleList.length - limitShown;
+    }
+    populate(sortBy);
+});
+
+nextBtn.addEventListener('click', () => {
+    startIndex += limitShown;
+
+    if(startIndex >= peopleList.length){
+        startIndex = 0;
+    }
+    populate(sortBy);
 });
