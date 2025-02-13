@@ -48,8 +48,9 @@ async function start() {
 
 
 // Sorting Function(s)
+// Sort by ID
 const SortById =async (ascend) => {
-    if(ascend === true){
+    if(ascend){
         let userData = await start();
         const sortedArray = userData.sort((a, b) => {
             a = a.Id;
@@ -69,13 +70,92 @@ const SortById =async (ascend) => {
         return sortedArray;
     }
 };
+// Sort By First Name
+const SortByFirst = async (ascend) =>{
+    if(ascend){
+        let userData = await start();
+        const sortedArray = userData.sort((a, b) => {
+            a = a.FirstName;
+            b = b.FirstName;
+
+            if(a < b){
+                return -1;
+            }else if(a > b){
+                return 1;
+            }else if(a === b){
+                return 0;
+            }
+        });
+        return sortedArray;
+
+    }else{
+        let userData = await start();
+        const sortedArray = userData.sort((a, b) =>{
+            a = a.FirstName;
+            b = b.FirstName;
+
+            if(a > b){
+                return -1;
+            }else if(a < b){
+                return 1;
+            }else if(a === b){
+                return 0;
+            }
+        });
+        return sortedArray;
+    }
+};
+// Sort By Last Name
+const SortByLast = async (ascend) =>{
+    if(ascend){
+        let userData = await start();
+        const sortedArray = userData.sort((a, b) => {
+            a = a.LastName;
+            b = b.LastName;
+
+            if(a < b){
+                return -1;
+            }else if(a > b){
+                return 1;
+            }else if(a === b){
+                return 0;
+            }
+        });
+        return sortedArray;
+
+    }else{
+        let userData = await start();
+        const sortedArray = userData.sort((a, b) =>{
+            a = a.LastName;
+            b = b.LastName;
+
+            if(a > b){
+                return -1;
+            }else if(a < b){
+                return 1;
+            }else if(a === b){
+                return 0;
+            }
+        });
+        return sortedArray;
+    }
+};
 
 
 // Populate Function
 async function populate(sortBy) {
     switch (sortBy){
+
         case 'idBtn':
             peopleList = await SortById(ascendingOrder);
+            break;
+
+        case 'firstNameBtn':
+            peopleList = await SortByFirst(ascendingOrder);
+            break;
+
+        case 'lastNameBtn':
+            peopleList = await SortByLast(ascendingOrder);
             break;
     }
     divArray.forEach(field => {
@@ -123,6 +203,36 @@ idBtn.addEventListener('click', () => {
     }else{
         ascendingOrder = true;
         sortBy = 'idBtn';
+        populate(sortBy);
+    }
+});
+
+firstNameBtn.addEventListener('click', () => {
+
+    if(sortBy === 'firstNameBtn' && ascendingOrder === true){
+        ascendingOrder = false;
+        populate(sortBy);
+    }else if(sortBy === 'firstNameBtn' && ascendingOrder === false){
+        ascendingOrder = true;
+        populate(sortBy);
+    }else{
+        ascendingOrder =true;
+        sortBy = 'firstNameBtn';
+        populate(sortBy);
+    }
+});
+
+lastNameBtn.addEventListener('click', () => {
+
+    if(sortBy === 'lastNameBtn' && ascendingOrder === true){
+        ascendingOrder = false;
+        populate(sortBy);
+    }else if(sortBy === 'lastNameBtn' && ascendingOrder === false){
+        ascendingOrder = true;
+        populate(sortBy);
+    }else{
+        ascendingOrder =true;
+        sortBy = 'lastNameBtn';
         populate(sortBy);
     }
 });
