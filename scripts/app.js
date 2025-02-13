@@ -27,11 +27,13 @@ let show50Btn = document.getElementById("show50Btn");
 // Variables
 let limitShown = 10;
 let ascendingOrder = true;
-let userData;
 let startIndex = 0;
 let peopleList;
 
+// Array Of My DIV'S
 let divArray = [idDiv, firstNameDiv, lastNameDiv, heightDiv, ageDiv]
+
+// What to show on load/reload
 let sortBy = "idBtn"
 
 // Having data load
@@ -39,13 +41,16 @@ async function start() {
     const userData = await GetData();
     return userData;
 };
-// start();
+
+// On load
+window.addEventListener('load', function () {
+    populate(sortBy)
+});
 
 // Testing my fetch
 // idBtn.addEventListener('click', () => {
 //     console.log(userData[2]);
 // });
-
 
 // Sorting Function(s)
 // Sort by ID
@@ -70,6 +75,7 @@ const SortById =async (ascend) => {
         return sortedArray;
     }
 };
+
 // Sort By First Name
 const SortByFirst = async (ascend) =>{
     if(ascend){
@@ -105,6 +111,7 @@ const SortByFirst = async (ascend) =>{
         return sortedArray;
     }
 };
+
 // Sort By Last Name
 const SortByLast = async (ascend) =>{
     if(ascend){
@@ -141,6 +148,53 @@ const SortByLast = async (ascend) =>{
     }
 };
 
+// Sort by Height
+const SortByHeight = async (ascend) =>{
+    if(ascend){
+        let userData = await start();
+        const sortedArray = userData.sort((a, b) => {
+            a = a.Height.substr(0, 2);
+            b = b.Height.substr(0, 2);
+
+            return a - b;
+        });
+        return sortedArray;
+
+    }else{
+        let userData = await start();
+        const sortedArray = userData.sort((a, b) =>{
+            a = a.Height.substr(0, 2);
+            b = b.Height.substr(0, 2);
+
+            return b - a;
+        });
+        return sortedArray;
+    }
+};
+
+// Sort By Age
+const SortByAge = async (ascend) =>{
+    if(ascend){
+        let userData = await start();
+        const sortedArray = userData.sort((a, b) => {
+            a = a.Age;
+            b = b.Age;
+
+            return a - b;
+        });
+        return sortedArray;
+
+    }else{
+        let userData = await start();
+        const sortedArray = userData.sort((a, b) =>{
+            a = a.Age;
+            b = b.Age;
+
+            return b - a;
+        });
+        return sortedArray;
+    }
+};
 
 // Populate Function
 async function populate(sortBy) {
@@ -157,6 +211,15 @@ async function populate(sortBy) {
         case 'lastNameBtn':
             peopleList = await SortByLast(ascendingOrder);
             break;
+        
+        case 'heightBtn':
+            peopleList = await SortByHeight(ascendingOrder);
+            break;
+
+        case 'ageBtn':
+            peopleList = await SortByAge(ascendingOrder);
+            break;
+
     }
     divArray.forEach(field => {
         field.textContent = "";
@@ -167,7 +230,6 @@ async function populate(sortBy) {
     });
 };
 
-
 // Creating Elements
 function createDiv(person){
     const properties = ['Id', 'FirstName', 'LastName', 'Height', 'Age'];
@@ -176,22 +238,17 @@ function createDiv(person){
     properties.forEach(prop => {
         let p = document.createElement('p');
         p.textContent = person[prop];
+        // p.className = "underline";
         pArr.push(p);
     });
 
     divArray.forEach((field, index) => {
         field.append(pArr[index]);
     });
-}
-
-
-// On load
-window.addEventListener('load', function () {
-    populate(sortBy)
-});
-
+};
 
 // OnClicks For Sort Buttons
+// Id button
 idBtn.addEventListener('click', () => {
 
     if(sortBy === 'idBtn' && ascendingOrder === true){
@@ -207,6 +264,7 @@ idBtn.addEventListener('click', () => {
     }
 });
 
+// First Name Button
 firstNameBtn.addEventListener('click', () => {
 
     if(sortBy === 'firstNameBtn' && ascendingOrder === true){
@@ -222,6 +280,7 @@ firstNameBtn.addEventListener('click', () => {
     }
 });
 
+// Last Name Button
 lastNameBtn.addEventListener('click', () => {
 
     if(sortBy === 'lastNameBtn' && ascendingOrder === true){
@@ -237,7 +296,37 @@ lastNameBtn.addEventListener('click', () => {
     }
 });
 
+// Height Button
+heightBtn.addEventListener('click', () => {
 
+    if(sortBy === 'heightBtn' && ascendingOrder === true){
+        ascendingOrder = false;
+        populate(sortBy);
+    }else if(sortBy === 'heightBtn' && ascendingOrder === false){
+        ascendingOrder = true;
+        populate(sortBy);
+    }else{
+        ascendingOrder =true;
+        sortBy = 'heightBtn';
+        populate(sortBy);
+    }
+});
+
+// Age Button
+ageBtn.addEventListener('click', () => {
+
+    if(sortBy === 'ageBtn' && ascendingOrder === true){
+        ascendingOrder = false;
+        populate(sortBy);
+    }else if(sortBy === 'ageBtn' && ascendingOrder === false){
+        ascendingOrder = true;
+        populate(sortBy);
+    }else{
+        ascendingOrder =true;
+        sortBy = 'ageBtn';
+        populate(sortBy);
+    }
+});
 
 // Pagination OnClicks & Limit change Function
 function showLimitClick(limit){
